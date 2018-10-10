@@ -7,38 +7,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendors/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='vendors/css/font-awesome.min.css') }}">
     <title>{{title}}</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand">**RMA TRACKER**</a>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{url_for('home')}}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="{{url_for('settings')}}">Settings</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="{{url_for('registration')}}">Register</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
-            </form>
-        </div>
-        <span><a class="nav-link" href="#"><small>Login / Logout</small></a></span>
-    </nav>
+    <!-- Main NavBar -->
+    {% include "navbarMain.html" %}
+    <!-- Main Content -->
     <div class="container">
         {% block content %} {% endblock %}
     </div>
+    <!-- Login Modal -->
+    {% include "loginModal.html" %}
+
+    <!-- Footer -->
+    <section>
+        <footer class="footer bg-dark text-light mt-5" id="footer">
+            <div class="container">
+                <p class="text-muted small pt-3 text-center">Copyright &copy; Codecipe LLC 2018</p>
+                <hr>
+            </div>
+        </footer>
+    </section>
 
     <script src="{{ url_for('static', filename='vendors/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendors/js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 
 </html>

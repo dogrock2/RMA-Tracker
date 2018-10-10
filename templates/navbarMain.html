@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand d-none d-xl-block">**RMA TRACKER**</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{setActive1}}">
+                <a class="nav-link" href="{{url_for('home')}}">Search</a>
+            </li>
+            <li class="nav-item {{setActive4}}">
+                <a class="nav-link" href="{{url_for('modify')}}">Modify</a>
+            </li>
+            <li class="nav-item {{setActive2}}">
+                <a class="nav-link" href="{{url_for('settings')}}">Settings</a>
+            </li>
+            <li class="nav-item {{setActive3}}">
+                <a class="nav-link" href="{{url_for('registration')}}">Register</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <div class="form-group mr-1">
+                <select id="inputState" class="form-control">
+                    <option selected>RMA</option>
+                    <option>Serial#</option>
+                    <option>Date</option>
+                </select>
+            </div>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+        </form>
+    </div>
+    <span><button class="btn btn-link" id="loginBtn"><small>Login&nbsp;</small></button></span>
+</nav>

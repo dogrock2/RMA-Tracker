@@ -1,4 +1,27 @@
 {%extends "layout.html"%}
 {%block content%}
-<h1>Home Page</h1>
+<h1 class="mt-2">Results:</h1>
+<div class="text-danger mb-3 ml-1">&nbsp;</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">RMA</th>
+            <th scope="col">Serial#1</th>
+            <th scope="col">Serial#2</th>
+            <th scope="col">Date</th>
+            <th scope="col">Comments</th>
+        </tr>
+    </thead>
+    {%for i in results%}    
+    <tr>
+        <td>{{'count'}}</td>
+        <th scope="row">{{i.rma}}</th>
+        <td>{{i.sn1}}</td>
+        <td>{{i.sn2}}</td>
+        <td>{{i.date}}</td>
+        <td>{{i.comments}}</td>
+    </tr>
+    {%endfor%}
+</table>
 {%endblock%}

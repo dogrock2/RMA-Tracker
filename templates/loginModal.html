@@ -1,0 +1,33 @@
+<div class="modal" tabindex="-1" role="dialog" id="loginModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">User Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="inputUser" class="sr-only">Username</label>
+                        <input type="text" id="inputUser" class="form-control" placeholder="Username" required
+                            autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword1" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword1" class="form-control" placeholder="Password"
+                            required>
+                        <small id="loginErr" class="form-text text-danger ml-2">&nbsp;</small>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Login</button>                        
+                    </div>
+                    <div class="text-center"><a href="{{url_for('registration')}}">Register</a></div>
+                </form>
+                <p class="mt-5 mb-3 text-muted text-center">&copy; Codecipe 2018</p>
+            </div>
+        </div>
+    </div>
+</div>
