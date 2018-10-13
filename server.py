@@ -1,6 +1,7 @@
 from flask import Flask, url_for, render_template, request
 from flask_pymongo import PyMongo
 import json
+import bcrypt
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
@@ -31,21 +32,26 @@ def modify():
 @app.route("/verifyLogin", methods=['POST'])
 def verifyLogin():
     credInput = request.get_json()
-    print(credInput)
-    result = mongo.db.users.find_one({"userName":credInput["inputUser"],"regInputPassword":credInput["inputPwd"]})
-    print(result)    
+    pwd = credInput["inputPwd"]
+    result = mongo.db.users.find_one({"userName":credInput["inputUser"]})
     if result == None:
-        print("None found")
+        return("User not found")
     else:
-        print("Create Session")   #encrypt password hashing 
-    return "atLogin"
+        hashed = result["regInputPassword"]
+        if bcrypt.hashpw(pwd, hashed) == hashed:
+            print("Matches")
+            return "success"
+        else:
+            return("Password does not match")
+        
 
 @app.route("/addRegistration", methods=['POST'])
 def addRegistration():
-    valInput = request.get_json()  
-    dupOK = verifyDuplicates(valInput["userName"], valInput["inputEmail"])
-    
+    valInput = request.get_json()      
+    dupOK = verifyDuplicates(valInput["userName"], valInput["inputEmail"])    
     if dupOK == 0:
+        inputPwd = valInput["regInputPassword"]
+        valInput["regInputPassword"] = encode_pwd(inputPwd)
         mongo.db.users.insert_one(valInput)
         return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
     elif dupOK == 1:
@@ -63,6 +69,11 @@ def verifyDuplicates(usr, email):
         stat = 2
         return stat
     return stat 
+
+def encode_pwd(inputPwd):  
+    salt = bcrypt.gensalt(10)
+    hashed = bcrypt.hashpw(inputPwd, salt)
+    return hashed
 
 
 

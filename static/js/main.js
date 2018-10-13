@@ -20,9 +20,13 @@ $("#loginModalFrm").on("submit", function(e){
         contentType: "application/json",
         dataType: "json",
         data: credentials,
-        success: function(data){},        
+        success: function(data){
+            console.log(data.responseText);
+            $("#loginErr").text(data.responseText);
+        },        
         error: function(error){
-            $("#loginErr").text(error);
+            console.log(error.responseText);
+            $("#loginErr").text(error.responseText);
         }
     });
 });
